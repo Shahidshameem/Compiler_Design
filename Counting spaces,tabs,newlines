@@ -1,0 +1,24 @@
+#include <stdio.h>
+
+int main() {
+    char ch;
+    int spaces = 0, tabs = 0, newlines = 0;
+
+    printf("Enter text (Ctrl+D or Ctrl+Z to end input):\n");
+
+    // Read characters until EOF is reached (Ctrl+D or Ctrl+Z)
+    while ((ch = getchar()) != EOF) {
+        if (ch == ' ') {
+            spaces++;   // Count spaces
+        } else if (ch == '\t') {
+            tabs++;     // Count tabs
+        } else if (ch == '\n') {
+            newlines++; // Count newlines
+        }
+    }
+    printf("Spaces: %d\n", spaces);
+    printf("Tabs: %d\n", tabs);
+    printf("Newlines: %d\n", newlines);
+
+    return 0;
+}
