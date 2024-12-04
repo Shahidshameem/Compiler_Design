@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+
+int isValidInteger(const char *str) {
+    int i = 0;
+
+    // Check for optional sign (+ or -)
+    if (str[i] == '+' || str[i] == '-') {
+        i++;
+    }
+    if (str[i] == '\0') {
+        return 0;  
+    }
+
+    while (str[i] != '\0') {
+        if (!isdigit(str[i])) {
+            return 0;  // Not a digit
+        }
+        i++;
+    }
+
+    return 1;
+}
+
+int main() {
+    char input[100];
+
+    // Take input from the user
+    printf("Enter a string with integers (with signs + or -): ");
+    fgets(input, sizeof(input), stdin);
+
+    input[strcspn(input, "\n")] = '\0';
+
+    char *token = strtok(input, " "); 
+
+    while (token != NULL) {
+        if (isValidInteger(token)) {
+            printf("Valid integer: %s\n", token);
+        } else {
+            printf("Invalid integer: %s\n", token);
+        }
+        token = strtok(NULL, " ");
+    }
+
+    return 0;
+}
